@@ -4,6 +4,7 @@ import DeviceService from '../serverServices/Device';
 import WithModal from './WithModal';
 import Headline, { Levels } from '../components/Headline';
 import { Device } from '../interface/User';
+import ResponseError from '../elementaryEntities/ResponseError';
 
 interface CurrentDeviceProps {
     isMobile: boolean;
@@ -25,7 +26,7 @@ const CurrentDevice = ({
                 <Headline
                     level={Levels.Third}
                     isMobile={isMobile}
-                    value={selectDevice.name}                    
+                    value={selectDevice.name}
                 />
 
                 <Textarea
@@ -44,11 +45,15 @@ const CurrentDevice = ({
         const device = new DeviceService();
 
         if (data?.description === selectDevice.description) {
-            return new Promise((_, reject) => reject('Description has not been changed'))
+            return new Promise((resolve) => {
+                return resolve(
+                    new ResponseError('Description has not been changed')
+                );
+            })
         }
 
         console.log(selectDevice);
-        
+
 
         return await device.edditDescription(
             selectDevice._id,

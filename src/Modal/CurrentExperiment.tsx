@@ -1,20 +1,21 @@
 import Input from '../components/Input';
 import Textarea from '../components/Textarea';
 import { createRegister } from '../utils/reactHookForm';
+import ExperimentService from '../serverServices/Experiment';
 import WithModal from './WithModal';
+import { Experimet } from '../interface/User';
+import ResponseError from '../elementaryEntities/ResponseError';
 
 interface CurrentExperimentProps {
     isMobile: boolean;
     isModalOpen: boolean;
-    currentExperimentName: string;
-    currentExperimentDescription: string;
+    currentExperimen: Experimet;
     closeModal(): void;
 }
 const CurrentExperiment = ({
     isMobile,
     isModalOpen,
-    currentExperimentName,
-    currentExperimentDescription,
+    currentExperimen,
     closeModal
 }: CurrentExperimentProps) => {
     const renderCurrentExperimentBody = (register: any, errors: any) => {
@@ -30,7 +31,7 @@ const CurrentExperiment = ({
                     errorMessage={errors?.title?.message}
                     {...titleRegister}
                 >
-                    {currentExperimentName}
+                    {currentExperimen.title}
                 </Input>
 
                 <Textarea
@@ -39,16 +40,37 @@ const CurrentExperiment = ({
                     errorMessage={errors?.description?.message}
                     {...descriptionRegister}
                 >
-                    {currentExperimentDescription}
+                    {currentExperimen.description}
                 </Textarea>
             </>
         )
     };
 
-    const onSubmitHandler = (data: any) => {
-        return new Promise(resolve => {
-            resolve(data);
-        });
+    const onSubmitHandler = async (data: any) => {
+        const experimentService = new ExperimentService();
+        let messageError = '';
+
+        const responseEdditDescription = await experimentService
+            .edditDescription(currentExperimen._id, data?.description);
+        const responseEdditTitle = await experimentService
+            .edditTitle(currentExperimen._id, data?.title)
+
+        if (
+            responseEdditDescription instanceof ResponseError
+        ) {
+            messageError += `${responseEdditDescription.error} `;
+        }
+        if (
+            responseEdditTitle instanceof ResponseError
+        ) {
+            messageError += `${responseEdditTitle.error} `;
+        }
+
+        if (messageError) {
+            return new Promise(resolve => resolve(new ResponseError(messageError)));
+        }
+
+        return new Promise(resolve => resolve({ status: true }));
     };
 
     return (

@@ -127,13 +127,12 @@ const Dashboard = ({ isMobile, user }: DashboardProps) => {
                 }
 
                 {
-                    selectExperiment?.title
+                    selectExperiment
                     &&
                     <CurrentExperiment
                         isMobile={isMobile}
                         isModalOpen={getIsOpenConcreteModal('currentExperiment')}
-                        currentExperimentName={selectExperiment.title}
-                        currentExperimentDescription={selectExperiment.description}
+                        currentExperimen={selectExperiment}
                         closeModal={closeModal}
                     />
                 }

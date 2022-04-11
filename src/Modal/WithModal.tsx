@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import ClosedButton from '../components/ClosedButton';
 import Form from '../components/Form';
@@ -34,19 +34,26 @@ const WithModal = ({
         mode: 'onBlur'
     });
     const [errorFromServer, setErrorFromServer] = useState();
+    const [isOpen, setIsOpen] = useState(isModalOpen)
 
     const wrapperOnSubmitHandler = async (data: any) => {
         const response = await onSubmitHandler(data);
+        console.log(response)
 
         if (response?.error) {
             setErrorFromServer(response);
         } else {
             setErrorFromServer(undefined);
+            setIsOpen(false)
         }
     };
 
+    useEffect(() => {
+        setIsOpen(isModalOpen);
+    }, [isModalOpen]);
+
     return (
-        <Modal isMobile={isMobile} isOpen={isModalOpen}>
+        <Modal isMobile={isMobile} isOpen={isOpen}>
             <Modal.Dialog>
                 <Form onSubmit={handleSubmit(wrapperOnSubmitHandler)}>
                     <Modal.Header>
