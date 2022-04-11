@@ -1,0 +1,30 @@
+.admission-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    &, & * {
+        box-sizing: border-box;
+    }
+
+    &__body {
+        width: Min(700px, 100%);
+        padding: 20px;
+    }
+
+    &__response-server {
+        margin: 20px 0;
+        color: rgb(134, 13, 13);
+        height: 1em;
+    }
+
+    &__footer {
+        margin-top: 40px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+}

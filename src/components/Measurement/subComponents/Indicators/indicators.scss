@@ -1,0 +1,20 @@
+.indicators {
+
+    &__row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 16px;
+    }
+
+    &__value {
+        color: #00B1E2;
+    }
+}
+
+.indicators.indicators--mobile {
+    
+    .indicators__row {
+        font-size: 14px;
+    }
+}

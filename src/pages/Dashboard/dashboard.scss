@@ -1,0 +1,13 @@
+.dashboard {
+    height: 100%;
+
+    &__main {
+        padding: clamp(50px, 10vw, 130px) 0px 70px 0;
+        max-height: 100%;
+    }
+
+    &__header {
+        position: fixed;
+        width: 100%;
+    }    
+}

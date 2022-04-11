@@ -1,0 +1,43 @@
+.burger {
+    position: relative;
+    width: 30px;
+    height: 10px;
+
+    cursor: pointer;
+
+    &:after,
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: #000;
+        transition: .3s;
+    }
+
+    &::before {
+        
+    }
+
+    &::after {
+        bottom: 0;
+    }
+}
+.burger.burger--closed {
+    height: 30px;
+    overflow: hidden;
+    
+    &::before,
+    &::after {
+    }
+
+    &::before {
+        top: 50%;
+        transform: rotate(45deg);
+    }
+    &::after {
+        top: 50%;
+        transform: rotate(-45deg);
+    }
+}

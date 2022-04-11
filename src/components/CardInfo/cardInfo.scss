@@ -1,0 +1,25 @@
+.card-info {
+    min-width: 280px;
+
+    &__title-body {
+        padding: 5px;
+        text-align: center;
+    }
+
+    &__body {
+        margin-top: 20px;
+    }
+
+    &__group {
+        border-bottom: 1px solid #C8BFBF;
+        padding: 20px 0;
+    }
+
+    &__row {
+        padding: 0 20px;
+
+        & + & {
+            margin-top: 10px;
+        }
+    }
+}

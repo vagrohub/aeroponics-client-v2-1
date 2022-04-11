@@ -1,0 +1,16 @@
+.group-list {
+
+
+    &__group {
+        padding: 0 20px;
+
+        & + & {
+            border-top: 1px solid #C8BFBF;
+        }
+
+        li {
+            margin: 20px 0;
+            list-style-type: none;
+        }
+    }
+}

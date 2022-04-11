@@ -1,0 +1,11 @@
+.active-element {
+    border: none;
+    background-color: transparent;
+    font-size: 18px;
+    padding: 0;
+    cursor: pointer;
+
+    &--modal {
+        font-size: 16px;
+    }
+}

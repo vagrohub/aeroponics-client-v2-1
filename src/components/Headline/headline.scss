@@ -1,0 +1,41 @@
+.headline {
+    
+    h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+
+        &::first-letter {
+            text-transform: uppercase;
+        }
+    }
+    h1 {
+        font-size: 48px;
+    }
+    h2 {
+        font-size: 36px;
+    }
+    h3 {
+        font-size: 24px;
+    }
+}
+
+.headline.headline--with-icon {
+    display: flex;
+    align-items: center;
+
+    h1, h2, h3, h4, h5, h6 {
+        margin-left: 20px;
+    }
+}
+
+.headline.headline--mobile {
+    
+    h1 {
+        font-size: 36px;
+    }
+    h2 {
+        font-size: 24px;
+    }
+    h3 {
+        font-size: 18px;
+    }
+}
