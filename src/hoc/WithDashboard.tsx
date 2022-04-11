@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Preloader from '../components/Preloader/Preloader';
-import Error from '../components/Error';
+import Error from '../pages/Error';
 import UserService from '../serverServices/User';
 import { User } from '../interface/User';
 import ResponseError from '../elementaryEntities/ResponseError';
