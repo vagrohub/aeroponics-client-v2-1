@@ -1,0 +1,7 @@
+.response-error {
+    color: darkred;
+
+    &:before {
+        content: 'Ошибка: ';
+    }
+}

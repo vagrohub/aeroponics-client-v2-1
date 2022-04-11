@@ -4,8 +4,8 @@ import ClosedButton from '../components/ClosedButton';
 import Form from '../components/Form';
 import Headline, { Levels } from '../components/Headline';
 import Modal from '../components/Modal';
+import ResponseError from '../components/ResponseError';
 import SimpleButton from '../components/SimpleButton';
-import ResponseError from '../elementaryEntities/ResponseError';
 
 interface WithModalProps {
     title: string;
@@ -33,15 +33,15 @@ const WithModal = ({
     } = useForm({
         mode: 'onBlur'
     });
-    const [errorFromServer, setErrorFromServer] = useState('');
+    const [errorFromServer, setErrorFromServer] = useState();
 
     const wrapperOnSubmitHandler = async (data: any) => {
         const response = await onSubmitHandler(data);
-        
+
         if (response?.error) {
-            setErrorFromServer(response.error);
+            setErrorFromServer(response);
         } else {
-            setErrorFromServer('');
+            setErrorFromServer(undefined);
         }
     };
 
@@ -64,7 +64,9 @@ const WithModal = ({
                     </Modal.Header>
 
                     <Modal.Body>
-                        {errorFromServer}
+                        <ResponseError
+                            error={errorFromServer}
+                        />
                         {children(register, errors)}
                     </Modal.Body>
 
