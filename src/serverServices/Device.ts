@@ -70,7 +70,7 @@ class Device extends Services {
 
     async edditDescription(deviceId: string, newDescription: string): Promise<DeviceEdditDescriptionResponse> {
         return await this.onKnockServer(async () => {
-            return await fetch(`${this.host}${this.path}/experiment`, {
+            return await fetch(`${this.host}${this.path}/description`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8',

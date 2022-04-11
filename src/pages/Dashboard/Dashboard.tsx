@@ -116,13 +116,12 @@ const Dashboard = ({ isMobile, user }: DashboardProps) => {
                 />
 
                 {
-                    selectDevice?.name
+                    selectDevice
                     &&
                     <CurrentDevice
                         isMobile={isMobile}
                         isModalOpen={getIsOpenConcreteModal('currentDevice')}
-                        currentDeviceName={selectDevice.name}
-                        currentDeviceDescription={selectDevice.description}
+                        selectDevice={selectDevice}
                         closeModal={closeModal}
                     />
                 }

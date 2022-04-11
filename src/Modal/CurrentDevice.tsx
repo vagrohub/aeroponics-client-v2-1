@@ -1,37 +1,32 @@
-import Input from '../components/Input';
 import Textarea from '../components/Textarea';
 import { createRegister } from '../utils/reactHookForm';
+import DeviceService from '../serverServices/Device';
 import WithModal from './WithModal';
+import Headline, { Levels } from '../components/Headline';
+import { Device } from '../interface/User';
 
 interface CurrentDeviceProps {
     isMobile: boolean;
     isModalOpen: boolean;
-    currentDeviceName: string;
-    currentDeviceDescription: string;
+    selectDevice: Device
     closeModal(): void;
 }
 const CurrentDevice = ({
-    currentDeviceName,
-    currentDeviceDescription,
+    selectDevice,
     isMobile,
     isModalOpen,
     closeModal
 }: CurrentDeviceProps) => {
     const renderCurrentDeviceBody = (register: any, errors: any) => {
         const descriptionRegister = createRegister(register, 'description', 6);
-        const nameRegister = createRegister(register, 'name', 3);
 
         return (
             <>
-                <Input
-                    label='Название:'
-                    type='text'
+                <Headline
+                    level={Levels.Third}
                     isMobile={isMobile}
-                    errorMessage={errors?.name?.message}
-                    {...nameRegister}
-                >
-                    {currentDeviceName}
-                </Input>
+                    value={selectDevice.name}                    
+                />
 
                 <Textarea
                     label='Описание'
@@ -39,16 +34,26 @@ const CurrentDevice = ({
                     errorMessage={errors?.description?.message}
                     {...descriptionRegister}
                 >
-                    {currentDeviceDescription}
+                    {selectDevice.description}
                 </Textarea>
             </>
         )
     };
 
-    const onSubmitHandler = (data: any) => {
-        return new Promise((resolve) => {
-            resolve(data)
-        });
+    const onSubmitHandler = async (data: any) => {
+        const device = new DeviceService();
+
+        if (data?.description === selectDevice.description) {
+            return new Promise((_, reject) => reject('Description has not been changed'))
+        }
+
+        console.log(selectDevice);
+        
+
+        return await device.edditDescription(
+            selectDevice._id,
+            data.description
+        );
     };
 
     return (

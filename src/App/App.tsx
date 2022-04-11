@@ -44,12 +44,12 @@ const App = () => {
     return (
         <AuthProvider>
             <Routes>
-                {/* <Route path='/' element={
-                    <WithDashboard Component={Dashboard} isMobile={isMobile} />
-                } /> */}
                 <Route path='/' element={
-                    <Dashboard isMobile={isMobile} user={user} />
+                    <WithDashboard Component={Dashboard} isMobile={isMobile} />
                 } />
+                {/* <Route path='/' element={
+                    <Dashboard isMobile={isMobile} user={user} />
+                } /> */}
                 <Route path='/auth' element={
                     <WithRouterUtils Component={Auth} isMobile={isMobile} />
                 } />

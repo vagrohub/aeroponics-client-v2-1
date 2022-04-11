@@ -34,6 +34,8 @@ const WithModal = ({
 
     const wrapperOnSubmitHandler = async (data: any) => {
         const result = await onSubmitHandler(data);
+        console.log(result);
+        
         // обработка ошибки
     };
 
