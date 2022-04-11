@@ -34,7 +34,7 @@ const WithDashboard = ({ Component, isMobile }: WithDashboardProps) => {
         if (authContext.token) {
             getUser();
         }
-    });
+    }, []);
 
     if (!authContext.token) {
         return (

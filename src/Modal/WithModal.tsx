@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import ClosedButton from '../components/ClosedButton';
 import Form from '../components/Form';
 import Headline, { Levels } from '../components/Headline';
 import Modal from '../components/Modal';
 import SimpleButton from '../components/SimpleButton';
+import ResponseError from '../elementaryEntities/ResponseError';
 
 interface WithModalProps {
     title: string;
@@ -11,7 +13,7 @@ interface WithModalProps {
     isModalOpen: boolean;
     closeModal(): void;
     onSubmitHandler(data: any): Promise<any>
-    children(register: any, errors?: any): JSX.Element
+    children(register: any, errors: any): JSX.Element
 }
 const WithModal = ({
     title,
@@ -31,12 +33,16 @@ const WithModal = ({
     } = useForm({
         mode: 'onBlur'
     });
+    const [errorFromServer, setErrorFromServer] = useState('');
 
     const wrapperOnSubmitHandler = async (data: any) => {
-        const result = await onSubmitHandler(data);
-        console.log(result);
+        const response = await onSubmitHandler(data);
         
-        // обработка ошибки
+        if (response?.error) {
+            setErrorFromServer(response.error);
+        } else {
+            setErrorFromServer('');
+        }
     };
 
     return (
@@ -58,6 +64,7 @@ const WithModal = ({
                     </Modal.Header>
 
                     <Modal.Body>
+                        {errorFromServer}
                         {children(register, errors)}
                     </Modal.Body>
 

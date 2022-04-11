@@ -1,5 +1,5 @@
 interface BodyProps {
-    children: JSX.Element[] | JSX.Element
+    children: any
 }
 const Body = ({ children }: BodyProps) => {
     return (
