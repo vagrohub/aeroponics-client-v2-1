@@ -1,4 +1,5 @@
 import { Experimet } from '../../interface/User';
+import ActiveElement from '../ActiveElement';
 import Details from '../Details';
 import { useNavbarContext } from './hooks';
 
@@ -18,13 +19,15 @@ const Experimets = ({ experimentList, onSelectExperimentHandler }: ExperimetsPro
                     experimentList.map(experiment => {
                         return (
                             <Details.Item key={experiment._id}>
-                                <span onClick={
-                                    () => {
-                                        onSelectExperimentHandler(experiment._id)
+                                <ActiveElement
+                                    isMobile={isMobile}
+                                    key={experiment._id}
+                                    onClickHandler={
+                                        () => onSelectExperimentHandler(experiment._id)
                                     }
-                                }>
+                                >
                                     {experiment.title}
-                                </span>
+                                </ActiveElement>
                             </Details.Item>
                         );
                     })

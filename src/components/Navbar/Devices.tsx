@@ -1,4 +1,5 @@
 import { Device } from '../../interface/User';
+import ActiveElement from '../ActiveElement';
 import Details from '../Details';
 import { useNavbarContext } from './hooks';
 
@@ -18,13 +19,15 @@ const Devices = ({ deviceList, onSelectDeviceHandler }: DevicesProps) => {
                     deviceList.map(device => {
                         return (
                             <Details.Item key={device._id}>
-                                <span onClick={
-                                    () => {
-                                        onSelectDeviceHandler(device._id)
+                                <ActiveElement
+                                    isMobile={isMobile}
+                                    key={device._id}
+                                    onClickHandler={
+                                        () => onSelectDeviceHandler(device._id)
                                     }
-                                }>
+                                >
                                     {device.name}
-                                </span>
+                                </ActiveElement>
                             </Details.Item>
                         );
                     })
