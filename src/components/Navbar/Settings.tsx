@@ -27,7 +27,7 @@ const Settings = ({
                                 () => toggleShowModal('newDevice')
                             }
                         >
-                            Новое устройства
+                            Новое устройство
                         </ActiveElement>
                     </Details.Item>
                     <Details.Item>

@@ -6,6 +6,7 @@ import Headline, { Levels } from '../components/Headline';
 import Modal from '../components/Modal';
 import ResponseError from '../components/ResponseError';
 import SimpleButton from '../components/SimpleButton';
+import { useDataContext } from '../Provider/DataProvider';
 
 interface WithModalProps {
     title: string;
@@ -34,15 +35,16 @@ const WithModal = ({
         mode: 'onBlur'
     });
     const [errorFromServer, setErrorFromServer] = useState();
-    const [isOpen, setIsOpen] = useState(isModalOpen)
+    const [isOpen, setIsOpen] = useState(isModalOpen);
+    const { updateUserAllInfo } = useDataContext();
 
     const wrapperOnSubmitHandler = async (data: any) => {
         const response = await onSubmitHandler(data);
-        console.log("АШИБКА", response)
 
         if (response?.error) {
             setErrorFromServer(response);
         } else {
+            updateUserAllInfo();
             setErrorFromServer(undefined);
             setIsOpen(false)
         }

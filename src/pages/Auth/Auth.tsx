@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Admission from '../../components/Admission';
 import Form from '../../components/Form';
 import Input from '../../components/Input';
 import SimpleButton from '../../components/SimpleButton';
 import ResponseError from '../../elementaryEntities/ResponseError';
-import useAuthContext from '../../hooks/useAuthContext';
+import { useAuthContext } from '../../Provider/AuthProvider';
 
 interface AuthProps {
     isMobile: boolean;
@@ -87,7 +87,7 @@ const Auth = ({ isMobile, goHome }: AuthProps) => {
                         isFill={isMobile}
                         type='submit'
                         value='Вход'
-                        text='Регистрация'
+                        text='Вход'
                     />
 
                     <Link to='/registration'>Регистрация</Link>

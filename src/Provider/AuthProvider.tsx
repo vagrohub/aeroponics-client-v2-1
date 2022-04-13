@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import ResponseError from '../elementaryEntities/ResponseError';
 import Token from '../elementaryEntities/Token';
 import AuthService from '../serverServices/Auth';
@@ -9,6 +9,7 @@ const AuthContext = createContext({
     async registration(email: string, username: string, password: string, cb: Function) { },
     signout(cb: Function) { }
 });
+const useAuthContext = () => useContext(AuthContext);
 
 interface AuthProviderProps {
     children: JSX.Element[] | JSX.Element
@@ -17,8 +18,9 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     const [token, setToken] = useState<string | undefined>(localStorage.getItem('token') || '');
     const authService = new AuthService();
 
-    const responseHandler = (response: Token | ResponseError, cb: Function) => {
-        if (response instanceof ResponseError) {
+    const responseHandler = (response: any, cb: Function) => {
+        if (response?.error) {
+            console.log("aaa", response)
             cb(response);
         } else {
             localStorage.setItem('token', response.token);
@@ -43,7 +45,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         cb: Function
     ) => {
         const response = await authService.registration(email, username, password);
-
+        console.log(response)
         responseHandler(response, cb);
     };
     const signout = async (cb: Function) => {
@@ -68,5 +70,6 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
 export default AuthProvider;
 export {
-    AuthContext
+    AuthContext,
+    useAuthContext
 }

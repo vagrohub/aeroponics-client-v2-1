@@ -10,6 +10,7 @@ class User extends Services {
     path = '/user'
 
     async getData(): Promise<UserGetDataResponse> {
+        this.checkAuth();
         return this.onKnockServer(async () => {
             return await fetch(`${this.host}${this.path}/`, {
                 headers: {
@@ -20,6 +21,7 @@ class User extends Services {
     }
 
     async getFullData(): Promise<UserGetDataFullFullResponse> {
+        this.checkAuth();
         return this.onKnockServer(async () => {
             return await fetch(`${this.host}${this.path}/full`, {
                 headers: {
@@ -30,6 +32,7 @@ class User extends Services {
     }
 
     async changePassword(password: string): Promise<UserChangePasswordResponse> {
+        this.checkAuth();
         return this.onKnockServer(async () => {
             return await fetch(`${this.host}${this.path}/password/`, {
                 method: 'POST',
@@ -45,6 +48,7 @@ class User extends Services {
     }
 
     async changeUsername(username: string): Promise<UserChangeUsernameResponse> {
+        this.checkAuth();
         return this.onKnockServer(async () => {
             return await fetch(`${this.host}${this.path}/username/`, {
                 method: 'POST',

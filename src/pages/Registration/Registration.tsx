@@ -6,7 +6,7 @@ import Form from '../../components/Form';
 import Input from '../../components/Input';
 import SimpleButton from '../../components/SimpleButton';
 import ResponseError from '../../elementaryEntities/ResponseError';
-import useAuthContext from '../../hooks/useAuthContext';
+import { useAuthContext } from '../../Provider/AuthProvider';
 
 interface RegistrationProps {
     isMobile: boolean;
@@ -102,8 +102,8 @@ const Registration = ({ isMobile, goHome }: RegistrationProps) => {
                         isMobile={isMobile}
                         isFill={isMobile}
                         type='submit'
-                        value='Вход'
-                        text='Вход'
+                        value='Зарегистрироваться'
+                        text='Зарегистрироваться'
                     />
 
                     <Link to='/auth'>Вход в аккаунт</Link>

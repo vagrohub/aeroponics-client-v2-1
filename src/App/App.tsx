@@ -7,6 +7,8 @@ import WithDashboard from '../hoc/WithDashboard';
 import AuthProvider from '../Provider/AuthProvider';
 import { getWindowWidth } from '../utils/dom';
 import WithRouterUtils from '../hoc/WithRouterUtils';
+import DataProvider from '../Provider/DataProvider';
+import WitchCheckAuth from '../hoc/WithCheckAuth';
 import './app.scss';
 
 const App = () => {
@@ -22,17 +24,21 @@ const App = () => {
 
     return (
         <AuthProvider>
-            <Routes>
-                <Route path='/' element={
-                    <WithDashboard Component={Dashboard} isMobile={isMobile} />
-                } />
-                <Route path='/auth' element={
-                    <WithRouterUtils Component={Auth} isMobile={isMobile} />
-                } />
-                <Route path='/registration' element={
-                    <WithRouterUtils Component={Registration} isMobile={isMobile} />
-                } />
-            </Routes>
+            <DataProvider>
+                <Routes>
+                    <Route path='/' element={
+                        <WitchCheckAuth>
+                            <WithDashboard Component={Dashboard} isMobile={isMobile} />
+                        </WitchCheckAuth>
+                    } />
+                    <Route path='/auth' element={
+                        <WithRouterUtils Component={Auth} isMobile={isMobile} />
+                    } />
+                    <Route path='/registration' element={
+                        <WithRouterUtils Component={Registration} isMobile={isMobile} />
+                    } />
+                </Routes>
+            </DataProvider>
         </AuthProvider>
     );
 };

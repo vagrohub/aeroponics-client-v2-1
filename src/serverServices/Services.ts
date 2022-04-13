@@ -23,8 +23,6 @@ class Services {
 
     async onKnockServer(getResponse: () => Promise<any>): Promise<any> {
         try {
-            this.checkAuth();
-
             const response = await getResponse();
             const serializeResponse = await response.json();
 
