@@ -2,7 +2,8 @@ import {
     ExperimentGetByIdResponse,
     ExperimentGetListResponse,
     ExperimentEdditTitleResponse,
-    ExperimentEdditDescriptionResponse
+    ExperimentEdditDescriptionResponse,
+    ExperimentCreateNewResponse
 } from '../interface/ServerResponse';
 import Services from './Services';
 
@@ -55,6 +56,22 @@ class Experiment extends Services {
                 },
                 body: JSON.stringify({
                     id,
+                    description
+                })
+            })
+        });
+    }
+
+    async createNew(title: string, description: string): Promise<ExperimentCreateNewResponse> {
+        return await this.onKnockServer(async () => {
+            await fetch(`${this.host}${this.path}/new`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8',
+                    Authorization: `Bearer ${this.getToken().token}`
+                },
+                body: JSON.stringify({
+                    title,
                     description
                 })
             })

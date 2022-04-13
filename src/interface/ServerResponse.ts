@@ -24,6 +24,7 @@ type ExperimentGetListResponse = {
 } | ResponseError;
 type ExperimentEdditDescriptionResponse = { experiment: Experimet } | ResponseError;
 type ExperimentEdditTitleResponse = { experiment: Experimet } | ResponseError;
+type ExperimentCreateNewResponse = { status: true } | ResponseError;
 
 
 
@@ -46,5 +47,6 @@ export type {
     ExperimentGetByIdResponse,
     ExperimentGetListResponse,
     ExperimentEdditDescriptionResponse,
-    ExperimentEdditTitleResponse
+    ExperimentEdditTitleResponse,
+    ExperimentCreateNewResponse
 }
