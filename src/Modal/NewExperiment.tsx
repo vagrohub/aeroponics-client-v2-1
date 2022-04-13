@@ -1,14 +1,17 @@
 import Input from '../components/Input';
 import Textarea from '../components/Textarea';
 import { createRegister } from '../utils/reactHookForm';
+import DeviceService from '../serverServices/Device';
 import WithModal from './WithModal';
 
 interface NewExperimentProps {
+    selectDeviceId: string;
     isMobile: boolean;
     isModalOpen: boolean;
     closeModal(): void;
 }
 const NewExperiment = ({
+    selectDeviceId,
     isMobile,
     isModalOpen,
     closeModal
@@ -41,8 +44,14 @@ const NewExperiment = ({
         );
     };
 
-    const onSubmitHandler = (data: any) => {
-        return new Promise(resolve => resolve(data));
+    const onSubmitHandler = async (data: any) => {
+        const deviceService = new DeviceService();
+
+        return await deviceService.stopCurrentExperiment(
+            selectDeviceId,
+            data?.title,
+            data?.description
+        );
     };
 
     return (

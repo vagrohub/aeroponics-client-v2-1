@@ -38,7 +38,7 @@ const WithModal = ({
 
     const wrapperOnSubmitHandler = async (data: any) => {
         const response = await onSubmitHandler(data);
-        console.log(response)
+        console.log("АШИБКА", response)
 
         if (response?.error) {
             setErrorFromServer(response);

@@ -109,11 +109,16 @@ const Dashboard = ({ isMobile, user }: DashboardProps) => {
                     closeModal={closeModal}
                 />
 
-                <NewExperiment
-                    isMobile={isMobile}
-                    isModalOpen={getIsOpenConcreteModal('newExperiment')}
-                    closeModal={closeModal}
-                />
+                {
+                    selectDevice
+                    &&
+                    <NewExperiment
+                        selectDeviceId={selectDevice?._id}
+                        isMobile={isMobile}
+                        isModalOpen={getIsOpenConcreteModal('newExperiment')}
+                        closeModal={closeModal}
+                    />
+                }
 
                 {
                     selectDevice
