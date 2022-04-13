@@ -47,7 +47,7 @@ class Experiment extends Services {
 
     async edditDescription(id: string, description: string): Promise<ExperimentEdditDescriptionResponse> {
         return await this.onKnockServer(async () => {
-            await fetch(`${this.host}${this.path}/title`, {
+            await fetch(`${this.host}${this.path}/description`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8',

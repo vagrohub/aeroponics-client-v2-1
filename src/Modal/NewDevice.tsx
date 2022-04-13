@@ -54,9 +54,9 @@ const NewDevice = ({
     }
 
     const onSubmitHandler = async (data: any) => {
-        const device = new DeviceService();
+        const deviceService = new DeviceService();
 
-        return await device.createNew(
+        return await deviceService.createNew(
             data?.name,
             data?.password,
             data?.description

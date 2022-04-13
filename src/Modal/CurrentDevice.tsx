@@ -4,7 +4,6 @@ import DeviceService from '../serverServices/Device';
 import WithModal from './WithModal';
 import Headline, { Levels } from '../components/Headline';
 import { Device } from '../interface/User';
-import ResponseError from '../elementaryEntities/ResponseError';
 
 interface CurrentDeviceProps {
     isMobile: boolean;
@@ -42,20 +41,9 @@ const CurrentDevice = ({
     };
 
     const onSubmitHandler = async (data: any) => {
-        const device = new DeviceService();
+        const deviceService = new DeviceService();
 
-        if (data?.description === selectDevice.description) {
-            return new Promise((resolve) => {
-                return resolve(
-                    new ResponseError('Description has not been changed')
-                );
-            })
-        }
-
-        console.log(selectDevice);
-
-
-        return await device.edditDescription(
+        return await deviceService.edditDescription(
             selectDevice._id,
             data.description
         );

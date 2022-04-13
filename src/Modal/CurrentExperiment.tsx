@@ -66,7 +66,7 @@ const CurrentExperiment = ({
             messageError += `${responseEdditTitle.error} `;
         }
 
-        if (messageError) {
+        if (messageError.length === 0) {
             return new Promise(resolve => resolve(new ResponseError(messageError)));
         }
 
