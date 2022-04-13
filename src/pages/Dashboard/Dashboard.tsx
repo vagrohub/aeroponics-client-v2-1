@@ -8,8 +8,8 @@ import { useUserData } from './hooks';
 import { useMenuControl } from '../../components/Header/hooks';
 import NewDevice from '../../Modal/NewDevice';
 import NewExperiment from '../../Modal/NewExperiment';
-import CurrentDevice from '../../Modal/CurrentDevice';
-import CurrentExperiment from '../../Modal/CurrentExperiment';
+import SelectDevice from '../../Modal/SelectDevice';
+import SelectExperiment from '../../Modal/SelectExperiment';
 import './dashboard.scss';
 
 interface DashboardProps {
@@ -123,7 +123,7 @@ const Dashboard = ({ isMobile, user }: DashboardProps) => {
                 {
                     selectDevice
                     &&
-                    <CurrentDevice
+                    <SelectDevice
                         isMobile={isMobile}
                         isModalOpen={getIsOpenConcreteModal('currentDevice')}
                         selectDevice={selectDevice}
@@ -134,7 +134,7 @@ const Dashboard = ({ isMobile, user }: DashboardProps) => {
                 {
                     selectExperiment
                     &&
-                    <CurrentExperiment
+                    <SelectExperiment
                         isMobile={isMobile}
                         isModalOpen={getIsOpenConcreteModal('currentExperiment')}
                         currentExperimen={selectExperiment}

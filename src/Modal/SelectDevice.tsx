@@ -5,18 +5,18 @@ import WithModal from './WithModal';
 import Headline, { Levels } from '../components/Headline';
 import { Device } from '../interface/User';
 
-interface CurrentDeviceProps {
+interface SelectDeviceProps {
     isMobile: boolean;
     isModalOpen: boolean;
     selectDevice: Device
     closeModal(): void;
 }
-const CurrentDevice = ({
+const SelectDevice = ({
     selectDevice,
     isMobile,
     isModalOpen,
     closeModal
-}: CurrentDeviceProps) => {
+}: SelectDeviceProps) => {
     const renderCurrentDeviceBody = (register: any, errors: any) => {
         const descriptionRegister = createRegister(register, 'description', 6);
 
@@ -51,7 +51,7 @@ const CurrentDevice = ({
 
     return (
         <WithModal
-            title='Текущее устройство'
+            title='Выбранное устройство'
             isMobile={isMobile}
             isModalOpen={isModalOpen}
             closeModal={closeModal}
@@ -62,4 +62,4 @@ const CurrentDevice = ({
     )
 };
 
-export default CurrentDevice;
+export default SelectDevice;

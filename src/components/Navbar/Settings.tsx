@@ -56,7 +56,7 @@ const Settings = ({
                                                 () => toggleShowModal('currentDevice')
                                             }
                                         >
-                                            Текущее устройство
+                                            Выбранное устройство
                                         </ActiveElement>
                                     </Details.Item>
                                 )
@@ -72,7 +72,7 @@ const Settings = ({
                                                 () => toggleShowModal('currentExperiment')
                                             }
                                         >
-                                            Текущий эксперимент
+                                            Выбранный эксперимент
                                         </ActiveElement>
                                     </Details.Item>
                                 )

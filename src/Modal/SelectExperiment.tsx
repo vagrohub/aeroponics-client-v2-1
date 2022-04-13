@@ -6,18 +6,18 @@ import WithModal from './WithModal';
 import { Experimet } from '../interface/User';
 import ResponseError from '../elementaryEntities/ResponseError';
 
-interface CurrentExperimentProps {
+interface SelectExperimentProps {
     isMobile: boolean;
     isModalOpen: boolean;
     currentExperimen: Experimet;
     closeModal(): void;
 }
-const CurrentExperiment = ({
+const SelectExperiment = ({
     isMobile,
     isModalOpen,
     currentExperimen,
     closeModal
-}: CurrentExperimentProps) => {
+}: SelectExperimentProps) => {
     const renderCurrentExperimentBody = (register: any, errors: any) => {
         const descriptionRegister = createRegister(register, 'description', 6);
         const titleRegister = createRegister(register, 'title', 3);
@@ -75,7 +75,7 @@ const CurrentExperiment = ({
 
     return (
         <WithModal
-            title='Текущий эксперимент'
+            title='Выбранный эксперимент'
             isMobile={isMobile}
             isModalOpen={isModalOpen}
             closeModal={closeModal}
@@ -86,4 +86,4 @@ const CurrentExperiment = ({
     )
 };
 
-export default CurrentExperiment;
+export default SelectExperiment;
