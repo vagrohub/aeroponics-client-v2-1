@@ -3,6 +3,10 @@
     display: block;
     position: relative;
     margin: 10px;
+    
+    &, & * {
+        box-sizing: border-box;
+    }
 
     summary {
         display: flex;

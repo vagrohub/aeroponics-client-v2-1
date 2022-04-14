@@ -5,7 +5,10 @@ const ejectLastDeviceFromUser = (user: User): Device | undefined => {
     return user.deviceList.at(-1);
 };
 
-const ejectLastExperimentFromDevice = (device: Device): Experimet | undefined => {
+const ejectLastExperimentFromDevice = (device: Device | undefined): Experimet | undefined => {
+    if (!device) {
+        return undefined
+    }
     return device.currentExperiment;
 };
 
@@ -13,28 +16,37 @@ const ejectDeviceListFromUser = (user: User): Device[] => {
     return user.deviceList;
 };
 
-const ejectExperimentListFromDevice = (device: Device): Experimet[] => {
+const ejectExperimentListFromDevice = (device: Device | undefined): Experimet[] => {
+    if (!device) {
+        return [];
+    }
     return [device.currentExperiment, ...device.cycles]
 };
 
 const useUserData = (user: User) => {
-    const device = ejectLastDeviceFromUser(user);
-    const deviceList = ejectDeviceListFromUser(user);
-    const [selectDevice, setDevice] = useState(device);
+    const [selectDevice, setDevice] =
+        useState<Device | undefined>(ejectLastDeviceFromUser(user));
+    const [deviceList, setDeviceList] =
+        useState<Device[]>(ejectDeviceListFromUser(user));
 
-    const experiment = selectDevice
-        ? ejectLastExperimentFromDevice(selectDevice)
-        : undefined;
-    const experimentList = selectDevice
-        ? ejectExperimentListFromDevice(selectDevice)
-        : [];
-    const [selectExperiment, setExperiment] = useState(experiment);
-    
+    const [selectExperiment, setExperiment] = 
+        useState(ejectLastExperimentFromDevice(selectDevice));
+    const [experimentList, setExperimentList] =
+        useState(ejectExperimentListFromDevice(selectDevice))
+
+    // update info
+    useEffect(() => {
+        setDevice(ejectLastDeviceFromUser(user));
+        setDeviceList(ejectDeviceListFromUser(user));
+
+        setExperiment(ejectLastExperimentFromDevice(selectDevice))
+        setExperimentList(ejectExperimentListFromDevice(selectDevice))
+    }, [user]);
 
     useEffect(() => {
-        setExperiment(experiment)
-    }, [experiment]);
-    
+        setExperiment(ejectLastExperimentFromDevice(selectDevice))
+        setExperimentList(ejectExperimentListFromDevice(selectDevice))
+    }, [selectDevice]);
 
     return {
         deviceList,
