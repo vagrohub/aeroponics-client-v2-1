@@ -11,12 +11,14 @@ import NewExperiment from '../../Modal/NewExperiment';
 import SelectDevice from '../../Modal/SelectDevice';
 import SelectExperiment from '../../Modal/SelectExperiment';
 import './dashboard.scss';
+import { useAuthContext } from '../../Provider/AuthProvider';
 
 interface DashboardProps {
     isMobile: boolean;
     user: User;
 }
 const Dashboard = ({ isMobile, user }: DashboardProps) => {
+    const { signout } =  useAuthContext();
     const {
         experimentList,
         setExperiment,
@@ -77,6 +79,7 @@ const Dashboard = ({ isMobile, user }: DashboardProps) => {
                                 isSelectDevice={!!selectDevice}
                                 isSelectExperiment={!!selectExperiment}
                                 toggleShowModal={showModal}
+                                signout={signout}
                             />
                             <Navbar.Devices
                                 deviceList={deviceList}

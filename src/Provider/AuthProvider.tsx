@@ -1,6 +1,4 @@
 import { createContext, useContext, useState } from 'react';
-import ResponseError from '../elementaryEntities/ResponseError';
-import Token from '../elementaryEntities/Token';
 import AuthService from '../serverServices/Auth';
 
 const AuthContext = createContext({

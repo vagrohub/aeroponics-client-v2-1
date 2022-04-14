@@ -4,13 +4,15 @@ import { useNavbarContext } from './hooks';
 
 interface SettingsProps {
     toggleShowModal(id: 'newDevice' | 'newExperiment' | 'currentDevice' | 'currentExperiment'): void
+    signout(cb?: Function): void
     isSelectExperiment: boolean;
     isSelectDevice: boolean;
 }
 const Settings = ({
     toggleShowModal,
     isSelectDevice,
-    isSelectExperiment
+    isSelectExperiment,
+    signout
 }: SettingsProps) => {
     const { isMobile } = useNavbarContext();
 
@@ -80,6 +82,16 @@ const Settings = ({
                         }
                     </Details.Group>
                 }
+                <Details.Group>
+                    <Details.Item>
+                        <ActiveElement
+                            isMobile={isMobile}
+                            onClickHandler={signout}
+                        >
+                            Выйти
+                        </ActiveElement>
+                    </Details.Item>
+                </Details.Group>
             </Details.Body>
         </Details >
     );
