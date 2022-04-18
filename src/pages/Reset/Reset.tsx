@@ -8,11 +8,11 @@ import SimpleButton from '../../components/ui/SimpleButton';
 import ResponseError from '../../core/elementaryEntities/ResponseError';
 import { useAuthContext } from '../../core/provider/AuthProvider';
 
-interface AuthProps {
+interface ResetProps {
     isMobile: boolean;
     goHome: Function;
 }
-const Auth = ({ isMobile, goHome }: AuthProps) => {
+const Reset = ({ isMobile, goHome }: ResetProps) => {
     const [error, setError] = useState<string>('');
     const authContext = useAuthContext();
     const {
@@ -27,11 +27,12 @@ const Auth = ({ isMobile, goHome }: AuthProps) => {
     });
 
     const onSubmitHandler = (data: any) => {
-        authContext.login(data.email, data.password, (error: ResponseError) => {
+        authContext.recovery(data.email, (error: ResponseError) => {
             if (error) {
                 setError(error.error)
             } else {
                 setError('')
+                alert('На вашу почту отправлен новый пароль')
                 goHome();
             }
         });
@@ -41,13 +42,15 @@ const Auth = ({ isMobile, goHome }: AuthProps) => {
         <Admission
             isMobile={isMobile}
             error={error}
-            title='Вход в аккаунт'
-            img={require('./enter.png')}
+            title='Восстановление пароля'
+            img={require('./recovery.png')}
         >
             <Form
                 onSubmit={handleSubmit(onSubmitHandler)}
                 className='admission-page__form'
             >
+                <hr style={{margin: '15px 0'}} />
+
                 <Input
                     label='Почта:'
                     type='email'
@@ -64,38 +67,21 @@ const Auth = ({ isMobile, goHome }: AuthProps) => {
                     email@email.com
                 </Input>
 
-                <Input
-                    label='Пароль:'
-                    type='password'
-                    errorMessage={errors?.password?.message}
-                    isMobile={isMobile}
-                    {...register('password', {
-                        required: 'Поле обязательно к заполнению',
-                        minLength: {
-                            value: 6,
-                            message: 'минимум 6 символов'
-                        }
-                    })}
-                >
-                    1234567
-                </Input>
-
                 <Admission.Footer>
                     <SimpleButton
                         isDisabled={!isValid}
                         isMobile={isMobile}
                         isFill={isMobile}
                         type='submit'
-                        value='Вход'
-                        text='Вход'
+                        value='Получить новый пароль'
+                        text='Получить новый пароль'
                     />
 
                     <Link to='/registration'>Регистрация</Link>
-                    <Link to='/reset'>Восстановление</Link>
                 </Admission.Footer>
             </Form>
         </Admission>
     );
 };
 
-export default Auth;
+export default Reset;

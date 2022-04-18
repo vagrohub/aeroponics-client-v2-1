@@ -1,5 +1,6 @@
 import {
     AuthLoginResponse,
+    AuthRecoveryResponse,
     AuthRegistrationResponse
 } from '../interface/ServerResponse';
 import Services from './Services';
@@ -37,6 +38,20 @@ class Auth extends Services {
                 body: JSON.stringify({
                     email,
                     password
+                })
+            });
+        });
+    }
+
+    async recovery(email: string): Promise<AuthRecoveryResponse> {
+        return await this.onKnockServer(async () => {
+            return await fetch(`${this.host}${this.path}/recovery`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify({
+                    email
                 })
             });
         });

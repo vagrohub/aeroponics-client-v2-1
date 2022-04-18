@@ -5,7 +5,8 @@ const AuthContext = createContext({
     token: localStorage.getItem('token') || undefined,
     async login(email: string, password: string, cb: Function) { },
     async registration(email: string, username: string, password: string, cb: Function) { },
-    signout(cb: Function) { }
+    signout(cb: Function) { },
+    recovery(email: string, cb: Function) { },
 });
 const useAuthContext = () => useContext(AuthContext);
 
@@ -51,12 +52,20 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         localStorage.removeItem('token');
         cb();
     };
+    const recovery = async (
+        email: string,
+        cb: Function
+    ) => {
+        const response = await authService.recovery(email);
+        responseHandler(response, cb);
+    }
 
     const value = {
         token,
         login,
         registration,
-        signout
+        signout,
+        recovery
     };
 
     return (

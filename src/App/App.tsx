@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Auth from '../pages/Auth';
 import Registration from '../pages/Registration';
 import Dashboard from '../pages/Dashboard';
+import Reset from '../pages/Reset';
 import WithDashboard from '../components/hoc/WithDashboard';
 import AuthProvider from '../core/provider/AuthProvider';
 import { getWindowWidth } from '../core/utils/dom';
@@ -36,6 +37,9 @@ const App = () => {
                     } />
                     <Route path='/registration' element={
                         <WithRouterUtils Component={Registration} isMobile={isMobile} />
+                    } />
+                    <Route path='/reset' element={
+                        <WithRouterUtils Component={Reset} isMobile={isMobile} />
                     } />
                 </Routes>
             </DataProvider>

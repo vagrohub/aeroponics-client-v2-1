@@ -4,6 +4,7 @@ import { Device, Experimet, MainUserInfo, User } from './User';
 
 type AuthLoginResponse = Token | ResponseError;
 type AuthRegistrationResponse = Token | ResponseError;
+type AuthRecoveryResponse = { status: true } | ResponseError;
 type AuthLogoutResponse = boolean;
 
 type UserGetDataResponse = { user: MainUserInfo } | ResponseError;
@@ -32,6 +33,7 @@ export type {
     AuthLoginResponse,
     AuthRegistrationResponse,
     AuthLogoutResponse,
+    AuthRecoveryResponse,
 
     UserGetDataResponse,
     UserGetDataFullFullResponse,
