@@ -1,4 +1,4 @@
-import { getClassNameWithModifiers } from '../../utils/className';
+import { getClassNameWithModifiers } from '../../core/utils/className';
 import './error.scss';
 
 interface ErrorProps {

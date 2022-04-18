@@ -1,9 +1,9 @@
-import Textarea from '../components/Textarea';
-import { createRegister } from '../utils/reactHookForm';
-import DeviceService from '../serverServices/Device';
+import Textarea from '../components/smart/Textarea';
+import { createRegister } from '../core/utils/reactHookForm';
+import DeviceService from '../core/serverServices/Device';
 import WithModal from './WithModal';
-import Headline, { Levels } from '../components/Headline';
-import { Device } from '../interface/User';
+import Headline, { Levels } from '../components/ordinary/Headline';
+import { Device } from '../core/interface/User';
 
 interface SelectDeviceProps {
     isMobile: boolean;

@@ -3,12 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 import Auth from '../pages/Auth';
 import Registration from '../pages/Registration';
 import Dashboard from '../pages/Dashboard';
-import WithDashboard from '../hoc/WithDashboard';
-import AuthProvider from '../Provider/AuthProvider';
-import { getWindowWidth } from '../utils/dom';
-import WithRouterUtils from '../hoc/WithRouterUtils';
-import DataProvider from '../Provider/DataProvider';
-import WitchCheckAuth from '../hoc/WithCheckAuth';
+import WithDashboard from '../components/hoc/WithDashboard';
+import AuthProvider from '../core/provider/AuthProvider';
+import { getWindowWidth } from '../core/utils/dom';
+import WithRouterUtils from '../components/hoc/WithRouterUtils';
+import DataProvider from '../core/provider/DataProvider';
+import WitchCheckAuth from '../components/hoc/WithCheckAuth';
 import './app.scss';
 
 const App = () => {

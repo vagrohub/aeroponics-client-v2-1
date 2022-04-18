@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import Admission from '../../components/Admission';
-import Form from '../../components/Form';
-import Input from '../../components/Input';
-import SimpleButton from '../../components/SimpleButton';
-import ResponseError from '../../elementaryEntities/ResponseError';
-import { useAuthContext } from '../../Provider/AuthProvider';
+import Admission from '../../containers/Admission';
+import Form from '../../components/ui/Form';
+import Input from '../../components/smart/Input';
+import SimpleButton from '../../components/ui/SimpleButton';
+import ResponseError from '../../core/elementaryEntities/ResponseError';
+import { useAuthContext } from '../../core/provider/AuthProvider';
 
 interface AuthProps {
     isMobile: boolean;

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import ClosedButton from '../components/ClosedButton';
-import Form from '../components/Form';
-import Headline, { Levels } from '../components/Headline';
-import Modal from '../components/Modal';
-import ResponseError from '../components/ResponseError';
-import SimpleButton from '../components/SimpleButton';
-import { useDataContext } from '../Provider/DataProvider';
+import ClosedButton from '../components/ui/ClosedButton';
+import Form from '../components/ui/Form';
+import Headline, { Levels } from '../components/ordinary/Headline';
+import Modal from '../containers/Modal';
+import ResponseError from '../components/ordinary/ResponseError';
+import SimpleButton from '../components/ui/SimpleButton';
+import { useDataContext } from '../core/provider/DataProvider';
 
 interface WithModalProps {
     title: string;

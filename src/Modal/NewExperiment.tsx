@@ -1,7 +1,7 @@
-import Input from '../components/Input';
-import Textarea from '../components/Textarea';
-import { createRegister } from '../utils/reactHookForm';
-import DeviceService from '../serverServices/Device';
+import Input from '../components/smart/Input';
+import Textarea from '../components/smart/Textarea';
+import { createRegister } from '../core/utils/reactHookForm';
+import DeviceService from '../core/serverServices/Device';
 import WithModal from './WithModal';
 
 interface NewExperimentProps {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Device, Experimet, User } from '../../interface/User';
+import { Device, Experimet, User } from '../../core/interface/User';
 
 const ejectLastDeviceFromUser = (user: User): Device | undefined => {
     return user.deviceList.at(-1);
