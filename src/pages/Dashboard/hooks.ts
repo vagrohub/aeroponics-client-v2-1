@@ -36,10 +36,8 @@ const useUserData = (user: User) => {
 
     // update info
     useEffect(() => {
-        setDevice(ejectLastDeviceFromUser(user));
+        console.log('new user');
         setDeviceList(ejectDeviceListFromUser(user));
-
-        setExperiment(ejectLastExperimentFromDevice(selectDevice))
         setExperimentList(ejectExperimentListFromDevice(selectDevice))
     }, [user]);
 

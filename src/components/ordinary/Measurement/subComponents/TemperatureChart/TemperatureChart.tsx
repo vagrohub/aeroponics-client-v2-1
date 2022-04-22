@@ -7,7 +7,7 @@ import TemperatureGraph from '../TemperatureGraph';
 
 interface Temperture {
     value: number;
-    date: Date;
+    date: string;
 }
 interface TemperatureChartProps {
     tempWater: Temperture[];

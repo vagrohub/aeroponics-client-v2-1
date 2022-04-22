@@ -13,8 +13,8 @@ const Indicators = ({ measurement }: IndicatorsProps) => {
     const { isMobile } = useMeasurementContext();
 
     const lightOnTime = getDateDifference(
-        measurement.lightOffTime,
-        measurement.lightWorkingTime
+        new Date(measurement.lightOffTime),
+        new Date(measurement.lightWorkingTime)
     ).toLocaleDateString();
     const { tempWater, tempRoom } = measurement;
     const error = measurement.danger ? 'Да' : 'Нет';

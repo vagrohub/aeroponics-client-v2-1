@@ -44,6 +44,7 @@ const WithModal = ({
         if (response?.error) {
             setErrorFromServer(response);
         } else {
+            console.log('reload');
             updateUserAllInfo();
             setErrorFromServer(undefined);
             setIsOpen(false)

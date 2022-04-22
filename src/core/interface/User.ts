@@ -1,13 +1,15 @@
+type StringDate = string;
+
 interface Measurement {
     danger: boolean,
     tempRoom: number,
     tempWater: number,
     lightSensor: number,
     lightWorkingTime: number,
-    lightOffTime: Date,
+    lightOffTime: StringDate,
     pumpTime: number,
     pumpSleep: number,
-    date: Date
+    date: StringDate
     _id: string;
 }
 
@@ -15,7 +17,7 @@ interface Experimet {
     title: string;
     description: string;
     measurements: Measurement[];
-    lastUpdate: Date;
+    lastUpdate: StringDate;
     _id: string;
 }
 

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Preloader from '../Preloader/Preloader';
+import Preloader from '../ordinary/Preloader/Preloader';
 import Error from '../../pages/Error';
 import { useDataContext } from '../../core/provider/DataProvider';
 
@@ -13,6 +13,14 @@ const WithDashboard = ({ Component, isMobile }: WithDashboardProps) => {
 
     useEffect(() => {
         updateUserAllInfo();
+    }, []);
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            updateUserAllInfo();
+        }, 60_000);
+
+        return () => clearInterval(intervalId);
     }, []);
 
     if (error) {

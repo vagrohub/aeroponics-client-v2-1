@@ -1,4 +1,4 @@
-import { getClassNameWithModifiers } from '../../core/utils/className';
+import { getClassNameWithModifiers } from '../../../core/utils/className';
 import './preloader.scss';
 
 interface PreloaderProps {

@@ -22,11 +22,11 @@ export const options = {
 
 interface TemperatureGraphProp {
     label: string;
-    temperatures: {value: number, date: Date}[];
+    temperatures: {value: number, date: string}[];
 }
 const TemperatureGraph = ({ temperatures, label }: TemperatureGraphProp) => {
     const data = {
-        labels: temperatures.map(temperature => temperature.date.toLocaleDateString()),
+        labels: temperatures.map(temperature => new Date(temperature.date).toLocaleDateString()),
         datasets: [
             {
                 label: label,
