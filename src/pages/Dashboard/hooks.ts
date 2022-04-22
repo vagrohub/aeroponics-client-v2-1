@@ -23,6 +23,10 @@ const ejectExperimentListFromDevice = (device: Device | undefined): Experimet[] 
     return [device.currentExperiment, ...device.cycles]
 };
 
+const getCurrentExperiment = (experimnetList: Experimet[], currentExperiment: Experimet) => {
+    return experimnetList.find(experiment => experiment._id === currentExperiment._id);
+}
+
 const useUserData = (user: User) => {
     const [selectDevice, setDevice] =
         useState<Device | undefined>(ejectLastDeviceFromUser(user));
@@ -35,15 +39,31 @@ const useUserData = (user: User) => {
         useState(ejectExperimentListFromDevice(selectDevice))
 
     // update info
-    useEffect(() => {
-        console.log('new user');
+      useEffect(() => {
+        if (selectDevice) {
+            setDevice(user.deviceList.find(device => device._id === selectDevice._id));
+        } else {
+            setDevice(ejectLastDeviceFromUser(user));
+        }
+
         setDeviceList(ejectDeviceListFromUser(user));
-        setExperimentList(ejectExperimentListFromDevice(selectDevice))
+        setExperimentList(ejectExperimentListFromDevice(selectDevice));
+
+        if (selectExperiment) {
+            setExperiment(getCurrentExperiment(experimentList, selectExperiment))
+        } else {
+            setExperiment(ejectLastExperimentFromDevice(selectDevice))
+        }
     }, [user]);
 
     useEffect(() => {
-        setExperiment(ejectLastExperimentFromDevice(selectDevice))
         setExperimentList(ejectExperimentListFromDevice(selectDevice))
+
+        if (selectExperiment) {
+            setExperiment(getCurrentExperiment(experimentList, selectExperiment))
+        } else {
+            setExperiment(ejectLastExperimentFromDevice(selectDevice))
+        }
     }, [selectDevice]);
 
     return {
