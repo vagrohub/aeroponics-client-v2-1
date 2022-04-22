@@ -22,7 +22,7 @@ export const options = {
 
 interface TemperatureGraphProp {
     label: string;
-    temperatures: {value: number, date: string}[];
+    temperatures: { value: number, date: string }[];
 }
 const TemperatureGraph = ({ temperatures, label }: TemperatureGraphProp) => {
     const data = {
@@ -31,6 +31,8 @@ const TemperatureGraph = ({ temperatures, label }: TemperatureGraphProp) => {
             {
                 label: label,
                 data: temperatures.map(temperature => temperature.value),
+                borderColor: 'rgb(53, 162, 235)',
+                backgroundColor: 'rgba(53, 162, 235, 0.5)'
             }
         ]
     };

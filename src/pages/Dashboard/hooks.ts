@@ -60,7 +60,11 @@ const useUserData = (user: User) => {
         setExperimentList(ejectExperimentListFromDevice(selectDevice))
 
         if (selectExperiment) {
-            setExperiment(getCurrentExperiment(experimentList, selectExperiment))
+            setExperiment(
+                getCurrentExperiment(experimentList, selectExperiment)
+                ||
+                ejectLastExperimentFromDevice(selectDevice)
+            )
         } else {
             setExperiment(ejectLastExperimentFromDevice(selectDevice))
         }

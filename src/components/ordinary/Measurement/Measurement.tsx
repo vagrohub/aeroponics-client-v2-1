@@ -9,7 +9,7 @@ import Report from './subComponents/Report';
 import NotDateSpinner from './subComponents/NotDateSpinner';
 
 interface MeasurementProps {
-    children: JSX.Element | JSX.Element[];
+    children: any;
     isMobile: boolean;
 }
 const Measurement = ({ children, isMobile }: MeasurementProps) => {

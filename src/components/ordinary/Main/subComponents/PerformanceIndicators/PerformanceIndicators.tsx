@@ -31,7 +31,11 @@ const PerformanceIndicators = () => {
         <Measurement isMobile={isMobile}>
             <Measurement.Title>Показатели</Measurement.Title>
 
-            <Measurement.Chart tempWater={tempWater} tempRoom={tempRoom} />
+            {
+                !isMobile
+                &&
+                <Measurement.Chart tempWater={tempWater} tempRoom={tempRoom} />
+            }
 
             <Measurement.Row>
                 <Measurement.Indicators measurement={measurement} />

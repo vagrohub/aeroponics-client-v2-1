@@ -1,5 +1,6 @@
 .temperature-chart {
     padding: 20px 0;
+    overflow: auto;
 
     &__header {
         display: flex;
