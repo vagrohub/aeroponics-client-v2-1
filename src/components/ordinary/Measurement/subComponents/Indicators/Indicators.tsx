@@ -35,7 +35,7 @@ const Indicators = ({ measurement }: IndicatorsProps) => {
                     </CardInfo.Group>
                     <CardInfo.Group>
                         <CardInfo.Row>
-                            <IndicatorsRow label='Время включения светя' value={lightOnTime} />
+                            <IndicatorsRow label='Время включения света' value={lightOnTime} />
                         </CardInfo.Row>
                     </CardInfo.Group>
                     <CardInfo.Group>

@@ -17,7 +17,8 @@ ChartJS.register(
 );
 
 export const options = {
-    responsive: true
+    // maintainAspectRatio: false,
+    // responsive: false
 };
 
 interface TemperatureGraphProp {
