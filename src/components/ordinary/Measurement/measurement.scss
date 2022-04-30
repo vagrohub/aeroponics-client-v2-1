@@ -1,0 +1,20 @@
+.measurement {
+    
+}
+
+.row {
+    padding: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+
+    > * {
+        flex: 1 1 0;
+        overflow: hidden;
+    }
+
+    &--mobile {
+        flex-direction: column;
+    }
+}

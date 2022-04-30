@@ -1,22 +1,24 @@
-import { useState } from 'react';
-import { Device, Experimet, User } from '../../interface/User';
-import Header from '../../components/Header';
-import Main from '../../components/Main';
-import Navbar from '../../components/Navbar';
-import { pinBody, unPinBody } from '../../utils/dom';
+import { useEffect, useState } from 'react';
+import { Device, Experimet, User } from '../../core/interface/User';
+import Header from '../../components/ordinary/Header';
+import Main from '../../components/ordinary/Main';
+import Navbar from '../../components/ordinary/Navbar';
+import { pinBody, unPinBody } from '../../core/utils/dom';
 import { useUserData } from './hooks';
-import { useMenuControl } from '../../components/Header/hooks';
-import NewDevice from '../../Modal/NewDevice';
-import NewExperiment from '../../Modal/NewExperiment';
-import CurrentDevice from '../../Modal/CurrentDevice';
-import CurrentExperiment from '../../Modal/CurrentExperiment';
+import { useMenuControl } from '../../components/ordinary/Header/hooks';
+import NewDevice from '../../modal/NewDevice';
+import NewExperiment from '../../modal/NewExperiment';
+import SelectDevice from '../../modal/SelectDevice';
+import SelectExperiment from '../../modal/SelectExperiment';
 import './dashboard.scss';
+import { useAuthContext } from '../../core/provider/AuthProvider';
 
 interface DashboardProps {
     isMobile: boolean;
     user: User;
 }
 const Dashboard = ({ isMobile, user }: DashboardProps) => {
+    const { signout } =  useAuthContext();
     const {
         experimentList,
         setExperiment,
@@ -77,6 +79,7 @@ const Dashboard = ({ isMobile, user }: DashboardProps) => {
                                 isSelectDevice={!!selectDevice}
                                 isSelectExperiment={!!selectExperiment}
                                 toggleShowModal={showModal}
+                                signout={signout}
                             />
                             <Navbar.Devices
                                 deviceList={deviceList}
@@ -109,32 +112,35 @@ const Dashboard = ({ isMobile, user }: DashboardProps) => {
                     closeModal={closeModal}
                 />
 
-                <NewExperiment
-                    isMobile={isMobile}
-                    isModalOpen={getIsOpenConcreteModal('newExperiment')}
-                    closeModal={closeModal}
-                />
-
                 {
-                    selectDevice?.name
+                    selectDevice
                     &&
-                    <CurrentDevice
+                    <NewExperiment
+                        selectDeviceId={selectDevice?._id}
                         isMobile={isMobile}
-                        isModalOpen={getIsOpenConcreteModal('currentDevice')}
-                        currentDeviceName={selectDevice.name}
-                        currentDeviceDescription={selectDevice.description}
+                        isModalOpen={getIsOpenConcreteModal('newExperiment')}
                         closeModal={closeModal}
                     />
                 }
 
                 {
-                    selectExperiment?.title
+                    selectDevice
                     &&
-                    <CurrentExperiment
+                    <SelectDevice
+                        isMobile={isMobile}
+                        isModalOpen={getIsOpenConcreteModal('currentDevice')}
+                        selectDevice={selectDevice}
+                        closeModal={closeModal}
+                    />
+                }
+
+                {
+                    selectExperiment
+                    &&
+                    <SelectExperiment
                         isMobile={isMobile}
                         isModalOpen={getIsOpenConcreteModal('currentExperiment')}
-                        currentExperimentName={selectExperiment.title}
-                        currentExperimentDescription={selectExperiment.description}
+                        currentExperimen={selectExperiment}
                         closeModal={closeModal}
                     />
                 }
