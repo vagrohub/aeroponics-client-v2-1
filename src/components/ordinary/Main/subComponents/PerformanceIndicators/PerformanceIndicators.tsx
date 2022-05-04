@@ -39,7 +39,7 @@ const PerformanceIndicators = () => {
 
             <Measurement.Row>
                 <Measurement.Indicators measurement={measurement} />
-                <Measurement.Report />
+                <Measurement.Report experiment={selectedExperiment} />
             </Measurement.Row>
         </Measurement>
     );

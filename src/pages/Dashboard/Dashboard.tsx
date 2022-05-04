@@ -10,8 +10,8 @@ import NewDevice from '../../modal/NewDevice';
 import NewExperiment from '../../modal/NewExperiment';
 import SelectDevice from '../../modal/SelectDevice';
 import SelectExperiment from '../../modal/SelectExperiment';
-import './dashboard.scss';
 import { useAuthContext } from '../../core/provider/AuthProvider';
+import './dashboard.scss';
 
 interface DashboardProps {
     isMobile: boolean;

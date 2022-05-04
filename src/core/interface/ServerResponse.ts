@@ -23,6 +23,7 @@ type ExperimentGetListResponse = {
     experimentsInCycle: Experimet[]
     currentExperiment: Experimet
 } | ResponseError;
+type ExperimentGetExcelBufferResponse = { excelBuffer: ArrayBuffer } | ResponseError;
 type ExperimentEdditDescriptionResponse = { experiment: Experimet } | ResponseError;
 type ExperimentEdditTitleResponse = { experiment: Experimet } | ResponseError;
 type ExperimentCreateNewResponse = { status: true } | ResponseError;
@@ -50,5 +51,6 @@ export type {
     ExperimentGetListResponse,
     ExperimentEdditDescriptionResponse,
     ExperimentEdditTitleResponse,
-    ExperimentCreateNewResponse
+    ExperimentCreateNewResponse,
+    ExperimentGetExcelBufferResponse
 }

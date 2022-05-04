@@ -2,7 +2,8 @@ import {
     ExperimentGetByIdResponse,
     ExperimentGetListResponse,
     ExperimentEdditTitleResponse,
-    ExperimentEdditDescriptionResponse
+    ExperimentEdditDescriptionResponse,
+    ExperimentGetExcelBufferResponse
 } from '../interface/ServerResponse';
 import Services from './Services';
 
@@ -24,6 +25,17 @@ class Experiment extends Services {
         this.checkAuth();
         return await this.onKnockServer(async () => {
             return await fetch(`${this.host}/${this.path}/list/?name=${deviceName}`, {
+                headers: {
+                    Authorization: `Bearer ${this.getToken().token}`
+                }
+            });
+        });
+    }
+
+    async getExcelBuffer(experimentId: string): Promise<ExperimentGetExcelBufferResponse> {
+        this.checkAuth();
+        return await this.onKnockServer(async () => {
+            return await fetch(`${this.host}/${this.path}/excel-buffer/?id=${experimentId}`, {
                 headers: {
                     Authorization: `Bearer ${this.getToken().token}`
                 }

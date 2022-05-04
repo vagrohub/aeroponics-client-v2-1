@@ -1,25 +1,42 @@
-
-import { useMeasurementContext } from '../../hooks';
+import ResponseError from '../../../../../core/elementaryEntities/ResponseError';
+import { Experimet } from '../../../../../core/interface/User';
+import ExperimentServices from '../../../../../core/serverServices/Experiment';
+import { download } from '../../../../../core/utils/dom';
 import CardInfo from '../../../CardInfo';
+import { useMeasurementContext } from '../../hooks';
 import './report.scss';
 
-const Report = () => {
+interface ReportProps {
+    experiment: Experimet;
+} 
+const Report = ({ experiment }: ReportProps) => {
     const { isMobile } = useMeasurementContext();
+    const experimentService = new ExperimentServices();
+
+    const downloadHandler = async () => {
+        // download();
+        const response = await experimentService.getExcelBuffer(experiment._id);
+
+        if (response instanceof ResponseError) {
+            alert('Не удалось скачать отчет. Попробуйте позже');
+            return;
+        }
+
+        download(new Blob([response.excelBuffer]), experiment.title);
+    }
 
     return (
         <div className='report'>
             <CardInfo isMobile={isMobile}>
-                <CardInfo.Title>Скачать отчет</CardInfo.Title>
+                <CardInfo.Title>Отчет</CardInfo.Title>
 
                 <CardInfo.Body>
                     <CardInfo.Group>
-                        <CardInfo.Row><span>За день</span></CardInfo.Row>
-                    </CardInfo.Group>
-                    <CardInfo.Group>
-                        <CardInfo.Row><span>За неделю</span></CardInfo.Row>
-                    </CardInfo.Group>
-                    <CardInfo.Group>
-                        <CardInfo.Row><span>За все время</span></CardInfo.Row>
+                        <CardInfo.Row>
+                            <button onClick={downloadHandler}>
+                                Скачать
+                            </button>
+                        </CardInfo.Row>
                     </CardInfo.Group>
                 </CardInfo.Body>
             </CardInfo>
